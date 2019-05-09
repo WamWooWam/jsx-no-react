@@ -3,7 +3,6 @@ export default function (tag, attrs, ...children) {
 
   if (attrs === null || attrs === undefined) attrs = {};
   for (let [attr, value] of Object.entries(attrs)) {
-
     if (elem.hasAttribute(attr)) {
       if (value === true) {
         elem.setAttribute(attr, attr);
@@ -12,12 +11,15 @@ export default function (tag, attrs, ...children) {
         elem.setAttribute(attr, value);
       }
     }
-    else if (attr in elem){
+    else if (attr in elem) {
       elem[attr] = value;
     }
   }
 
   for (let child of children) {
+    if (child === undefined) {
+      continue;
+    }
     if (!(child instanceof Node)) {
       child = document.createTextNode(child);
     }
