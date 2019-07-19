@@ -1,4 +1,22 @@
-export default function (tag, attrs, ...children) {
+function appendChild(elem : HTMLElement, child : any) {
+  if (child === undefined) {
+    return;
+  }
+  
+    for (let child2 of child) {
+      appendChild(elem, child2);
+    }
+
+    return;
+  }
+  else if (!(child instanceof Node)) {
+    child = document.createTextNode(child);
+  }
+
+  elem.appendChild(child);
+}
+
+export default function (tag: string, attrs: [], ...children:[]) : HTMLElement {
   let elem = document.createElement(tag);
 
   if (attrs !== null && attrs !== undefined) {
@@ -18,23 +36,8 @@ export default function (tag, attrs, ...children) {
   }
 
   for (let child of children) {
-    if (child === undefined) {
-      continue;
-    }
-    if (child instanceof Array){
-      for(let child2 of child){
-        appendChild(child2);
-      }
-    }    
-    appendChild(child);
+    appendChild(elem, child);
   }
 
   return elem;
-
-  function appendChild(child) {
-    if (!(child instanceof Node)) {
-      child = document.createTextNode(child);
-    }
-    elem.appendChild(child);
-  }
 };
