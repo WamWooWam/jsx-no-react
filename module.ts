@@ -3,6 +3,7 @@ function appendChild(elem : HTMLElement, child : any) {
     return;
   }
   
+  if (child instanceof Array) {
     for (let child2 of child) {
       appendChild(elem, child2);
     }
