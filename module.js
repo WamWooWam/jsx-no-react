@@ -1,4 +1,4 @@
-function appendChild(elem : HTMLElement, child : any) {
+function appendChild(elem, child) {
   if (child === undefined) {
     return;
   }
@@ -17,7 +17,7 @@ function appendChild(elem : HTMLElement, child : any) {
   elem.appendChild(child);
 }
 
-export default function (tag: string, attrs: [], ...children:[]) : HTMLElement {
+export default function (tag, attrs, ...children) {
   let elem = document.createElement(tag);
 
   if (attrs !== null && attrs !== undefined) {
